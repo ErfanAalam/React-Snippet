@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faCross, faPencil, faTrash, faX } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faPencil, faTrash, faX } from '@fortawesome/free-solid-svg-icons';
 
 function App() {
   const [task, setTask] = useState("")
