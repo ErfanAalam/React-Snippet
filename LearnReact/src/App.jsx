@@ -57,7 +57,9 @@ function App() {
           tasks.map((task, index) => {
             return <li key={index} className={task.completed? "check li": "li"}>
               {task.task}
-              <FontAwesomeIcon icon={faPencil} onClick={() => handleUpdate(task.id)} />
+              {
+                task.completed? "" :<FontAwesomeIcon icon={faPencil} onClick={() => handleUpdate(task.id)} />
+              }
               <FontAwesomeIcon icon={faTrash} onClick={() => handleDelete(task.id)} />
               <FontAwesomeIcon icon={task.completed ? faCheckCircle : faCircle} onClick={() => handleCheck(task.id)} />
             </li>
