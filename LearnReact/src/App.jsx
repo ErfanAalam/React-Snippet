@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faPencil, faTrash, faX } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle, faCircle, faPencil, faTrash} from '@fortawesome/free-solid-svg-icons';
 
 function App() {
   const [task, setTask] = useState("")
@@ -49,20 +49,22 @@ function App() {
 
   return (
     <>
-      <input type="text" placeholder='Enter your task to add' value={task} onChange={(e) => setTask(e.target.value)} />
-      <button onClick={handlesubmit}>Add</button>
-      <ul>
+     <div className="container">
+     <input type="text" className='input' placeholder='Enter your task to add' value={task} onChange={(e) => setTask(e.target.value)} />
+      <button className='btn' onClick={handlesubmit}>Add</button>
+      <ul className='ul'>
         {
           tasks.map((task, index) => {
-            return <li key={index}>
+            return <li key={index} className={task.completed? "check li": "li"}>
               {task.task}
               <FontAwesomeIcon icon={faPencil} onClick={() => handleUpdate(task.id)} />
               <FontAwesomeIcon icon={faTrash} onClick={() => handleDelete(task.id)} />
-              <FontAwesomeIcon icon={task.completed ? faCheck : faX} onClick={() => handleCheck(task.id)} />
+              <FontAwesomeIcon icon={task.completed ? faCheckCircle : faCircle} onClick={() => handleCheck(task.id)} />
             </li>
           })
         }
       </ul>
+     </div>
     </>
   )
 }
