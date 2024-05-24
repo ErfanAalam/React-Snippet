@@ -15,6 +15,7 @@ function App() {
         task: task,
         completed:false
       }
+      
       setTasks([...tasks, obj])
     } else {
       const taskToEdit = tasks.find((obj) => obj.id === isEditing);
