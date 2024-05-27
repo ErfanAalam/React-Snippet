@@ -20,13 +20,13 @@ const Blog = () => {
       <h1 className='blogheading'>Blog app</h1>
       <div className="blogapp">
         {
-          data.map((d, index) => {
+          data.map((blog, index) => {
             return (
               <>
                 <div className='blogContainer' key={index}>
-                  <h3>{d.id}</h3>
-                  <h4>{d.title}</h4>
-                  <p>{d.body}</p>
+                  <h3>{blog.id}</h3>
+                  <h4>{blog.title}</h4>
+                  <p>{blog.body}</p>
                 </div>
               </>
             )
