@@ -1,15 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
+import { context } from '../App';
+
 
 const Product = () => {
   const [products, setProduct] = useState([])
+  const { handleAddtoCart, isAddToCart, HandleRemoveFromCart } = useContext(context)
+
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
       .then((response) => response.json())
       .then(result => {
-        console.log(result);
+        // console.log(result);
         setProduct(result)
       })
   }, [])
@@ -34,9 +38,26 @@ const Product = () => {
                 <img src={product.image} width={"300px"} height={"300px"} alt="" />
               </Link>
               <h2>{truncate(product.title)}</h2>
-              <h3>Price : {product.price}</h3>
+              <h3>Price : {product.price} $</h3>
               <h3>Rating : {product.rating.rate}</h3>
-              <h2 className='cart'>Add to Cart</h2>
+
+              <h3>
+                {isAddToCart(product.id) ?
+                  <Link
+                    className='cart'
+                    onClick={(e) => HandleRemoveFromCart(e, product.id)}
+                  > Remove From the cart
+                  </Link>
+                  :
+
+                  <Link
+                    className='cart'
+                    onClick={(e) => handleAddtoCart(e, product)}
+                  > Add to Cart
+                  </Link>
+                }
+              </h3>
+
             </div>)
           })
         }
