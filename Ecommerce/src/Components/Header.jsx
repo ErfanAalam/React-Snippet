@@ -4,7 +4,7 @@ import { context } from '../App'
 
 
 const Header = () => {
-const {cart} = useContext(context)
+  const {cart} = useContext(context)
 
   return (
     <div>
