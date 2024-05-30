@@ -53,4 +53,10 @@
 
 .para span{
   width: 200px;
+  cursor: pointer;
+}
+
+.facultyChooser{
+  display: flex;
+  gap: 30px;
 }

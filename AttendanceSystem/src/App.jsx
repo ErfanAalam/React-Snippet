@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import students from './students'
 
@@ -8,10 +8,8 @@ function App() {
   const [facultyNames, setFacultyNames] = useState(faculty);
   const [sortedStudents, setSortedStudents] = useState([]);
 
-  const [button,setButton] = useState()
 
   const [attendance, setAttendance] = useState({});
-  const [all, setAll] = useState()
 
   function handleFacultyChange(e) {
     const faculty = e.target.value;
@@ -29,13 +27,46 @@ function App() {
   }
 
 
-  const handleAttandance = (uniqueKey) => {
-    setAll(false)
+
+  function handleAttandance(uniqueKey) {
     setAttendance(prev => ({
       ...prev,
       [uniqueKey]: !prev[uniqueKey]
 
     }));
+  }
+
+  function handleAllAttendance(toMark) {
+    const students = Object.keys(attendance)
+    console.log(students);
+    const newAttendance = {}
+    if (toMark) {
+      students.forEach((student) => {
+        newAttendance[student] = true
+      })
+    }
+    else {
+      students.forEach((student) => {
+        newAttendance[student] = false
+      })
+    }
+    setAttendance(newAttendance)
+  }
+
+
+  const postData = () => {
+    JSON.stringify(attendance)
+    console.log(attendance);
+
+    // axios.post("").then().catch()
+
+    fetch("", {
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "POST",
+      body: JSON.stringify(attendance)
+    })
   }
 
   return (
@@ -54,9 +85,10 @@ function App() {
           })}
         </select>
 
-        <button onClick={() => {setAll(true),setButton(true)}}>All Present</button>
-        <button onClick={() => {setAll(true), setButton(false)} }>All Absent</button>
-          
+        <button onClick={() => handleAllAttendance(true)}>All Present</button>
+        <button onClick={() => handleAllAttendance(false)}>All Absent</button>
+        <button onClick={postData}>submit</button>
+
       </div>
 
       <div className="attendanceGrid">
@@ -68,12 +100,9 @@ function App() {
                 return (
                   <div key={uniqueKey} className='name'>
                     <p className='para'>
-                      <span onClick={() => handleAttandance(uniqueKey)}>{student}</span>
-                      <span className="marker">
-                        {all
-                          ?
-                          button ? "P" : "A"
-                          :
+                      <span>{student}</span>
+                      <span className="marker" onClick={() => handleAttandance(uniqueKey)} >
+                        {
                           attendance[uniqueKey] ? "P" : "A"
                         }
                       </span>
@@ -87,6 +116,7 @@ function App() {
           "Select faculty"
         )}
       </div>
+
     </>
   )
 }
