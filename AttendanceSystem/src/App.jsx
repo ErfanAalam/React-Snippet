@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import students from './students'
+import axios from 'axios';
 
 function App() {
 
@@ -38,7 +39,7 @@ function App() {
 
   function handleAllAttendance(toMark) {
     const students = Object.keys(attendance)
-    console.log(students);
+    // console.log(students);
     const newAttendance = {}
     if (toMark) {
       students.forEach((student) => {
@@ -55,19 +56,28 @@ function App() {
 
 
   const postData = () => {
-    JSON.stringify(attendance)
-    console.log(attendance);
+  // JSON.stringify(attendance)
+  // console.log(attendance);
 
-    // axios.post("").then().catch()
+  // axios.post("https://attendance-api-sjkr.onrender.com/saveAttendance",attendance).then((response)=>{
+  //   console.log(response.config.data);
+  // })
 
-    fetch("", {
-      headers: {
-        "Content-Type": "application/json"
-      },
-      method: "POST",
-      body: JSON.stringify(attendance)
-    })
+  // fetch("https://attendance-api-sjkr.onrender.com/saveAttendance", {
+  //   headers: {
+  //     "Content-Type": "application/json"
+  //   },
+  //   method: "post",
+  //   body: JSON.stringify(attendance)
+  // }).then((response)=> console.log(response)).catch((e)=>console.log(e))
+
+    axios
+      .post("https://attendance-api-sjkr.onrender.com/saveAttendance", attendance)
+      .then((response) => {
+        console.log(response.config.data);
+      })
   }
+
 
   return (
     <>
