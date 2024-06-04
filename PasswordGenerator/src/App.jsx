@@ -51,22 +51,22 @@ function App() {
       <div className="charset">
 
         <div className="uppercase">
-          <input type="checkbox" name="uppercase" id="uppercase" onChange={() => setUppercase(!uppercase)} />
+          <input type="checkbox" name="uppercase" id="uppercase" onChange={() =>{ setUppercase(!uppercase),setPassword("")}} />
           <label htmlFor="uppercase">Include Uppercase</label>
         </div>
 
         <div className="lowercase">
-          <input type="checkbox" name="lowercase" id="lowercase" onChange={() => setLowercase(!lowercase)} />
+          <input type="checkbox" name="lowercase" id="lowercase" onChange={() => {setLowercase(!lowercase),setPassword("")}} />
           <label htmlFor="lowercase">Include lowercase</label>
         </div>
 
         <div className="Symbols">
-          <input type="checkbox" name="Symbols" id="Symbols" onChange={() => setSymbol(!symbol)} />
+          <input type="checkbox" name="Symbols" id="Symbols" onChange={() => {setSymbol(!symbol),setPassword("")}} />
           <label htmlFor="Symbols">Include Symbols</label>
         </div>
 
         <div className="Numbers">
-          <input type="checkbox" name="Numbers" id="Numbers" onChange={() => setNumber(!number)} />
+          <input type="checkbox" name="Numbers" id="Numbers" onChange={() => {setNumber(!number),setPassword("")}} />
           <label htmlFor="Numbers">Include Numbers</label>
         </div>
 

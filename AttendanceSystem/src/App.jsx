@@ -39,7 +39,6 @@ function App() {
 
   function handleAllAttendance(toMark) {
     const students = Object.keys(attendance)
-    // console.log(students);
     const newAttendance = {}
     if (toMark) {
       students.forEach((student) => {
@@ -55,28 +54,36 @@ function App() {
   }
 
 
-  const postData = () => {
-  // JSON.stringify(attendance)
-  // console.log(attendance);
 
-  // axios.post("https://attendance-api-sjkr.onrender.com/saveAttendance",attendance).then((response)=>{
-  //   console.log(response.config.data);
-  // })
 
-  // fetch("https://attendance-api-sjkr.onrender.com/saveAttendance", {
-  //   headers: {
-  //     "Content-Type": "application/json"
-  //   },
-  //   method: "post",
-  //   body: JSON.stringify(attendance)
-  // }).then((response)=> console.log(response)).catch((e)=>console.log(e))
+  // useEffect(()=>{
+  //   axios.get("https://attendance-api-sjkr.onrender.com/getFaculty")
+  //   .then((response)=>{console.log(response.data)})
+  // },[])
+  
+    // useEffect(()=>{
+    //   axios.post("https://attendance-api-sjkr.onrender.com/saveFaculty",
+    //   {name:"Shubh"}).then((response)=>console.log(response.data))
+    // },[])
 
-    axios
-      .post("https://attendance-api-sjkr.onrender.com/saveAttendance", attendance)
-      .then((response) => {
-        console.log(response.config.data);
-      })
-  }
+  useEffect(()=>{
+    axios.get("https://attendance-api-sjkr.onrender.com/getStudent")
+    .then((response)=>{console.log(response.data)})
+  },[])
+
+  //   useEffect(()=>{
+  //   axios.post("https://attendance-api-sjkr.onrender.com/saveStudent",{name : "Divyansh Sahu", faculty:"Rohit Sir"})
+  //   .then((response)=>{console.log(response.data)})
+  // },[])
+
+
+  // useEffect(()=>{
+  //   axios.delete("https://attendance-api-sjkr.onrender.com/deleteStudent/1717414070063")
+  //   .then((response)=>{console.log(response.data)})
+  // },[])
+
+
+
 
 
   return (
@@ -97,7 +104,8 @@ function App() {
 
         <button onClick={() => handleAllAttendance(true)}>All Present</button>
         <button onClick={() => handleAllAttendance(false)}>All Absent</button>
-        <button onClick={postData}>submit</button>
+        <button><a href="saveStudent">Add Student</a></button>
+        <button><a href="saveTeacher">Add Faculty</a></button>
 
       </div>
 

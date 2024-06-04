@@ -1,3 +1,4 @@
+
 /* #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -134,3 +135,8 @@ main {
 .singleProduct .right{
   width: 75%;
 }
+
+/* header{ */
+  /* position: fixed;
+  width: 95%; */
+/* } */
