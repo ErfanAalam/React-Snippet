@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useMemo } from 'react'
 
 const Contact = () => {
@@ -22,6 +22,10 @@ const Contact = () => {
     console.log(obj);
 
   }
+  useEffect(()=>{
+    console.log(name);
+    console.log(email);
+  })
 
 
   function handleFileChange(e) {
@@ -36,12 +40,12 @@ const Contact = () => {
       <form action="/" onSubmit={handleSubmit}>
         <div className="name">
           <label htmlFor="Name"> Enter your name</label>
-          <input type="text" name="" id="" value={name} onChange={useMemo((e) => setName(e.target.value)),[name]} />
+          <input type="text" name="" id="" value={name} onChange={(e) => setName(e.target.value)} />
         </div>
 
         <div className="email">
           <label htmlFor="email"> Enter your email</label>
-          <input type="email" name="" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input type="email" name="" id="email" value={email} onChange={useMemo((e) => setEmail(e),[email])} />
         </div>
 
         <div className="number">
