@@ -8,6 +8,9 @@ import Contact from './Components/Contact.jsx';
 import ProductDetails from './Components/ProductDetails.jsx';
 import Parent from './Components/Parent.jsx';
 import { useState, createContext } from 'react';
+import Home from './Components/Home.jsx';
+import Signup from './Components/Signup.jsx';
+import Signin from './Components/Signin.jsx';
 
 
 export const context = createContext()
@@ -15,12 +18,18 @@ export const context = createContext()
 function App() {
 
   const [cart, setCart] = useState([])
+  const [cartItem, setCartItem] = useState([])
+
+  const [login, setLogin] = useState(null)
 
 
   function handleAddtoCart(e, product) {
     e.preventDefault()
     setCart([...cart, product])
-    console.log(cart);
+    setCartItem([...cartItem, product])
+    localStorage.clear()
+    localStorage.setItem("cartitem",JSON.stringify(cartItem))
+    // console.log(cart);
   }
 
   function isAddToCart(id) {
@@ -38,16 +47,23 @@ function App() {
     setCart(cart.filter((addedProduct) => {
       return addedProduct.id !== id
     }))
+    setCartItem(cartItem.filter((addedProduct) => {
+      return addedProduct.id !== id
+    }))
+    localStorage.clear()
+    localStorage.setItem("cartitem",JSON.stringify(cartItem))
+
+
   }
 
   return (
-    <context.Provider value={{ cart, setCart, handleAddtoCart, isAddToCart, HandleRemoveFromCart }}>
+    <context.Provider value={{ cart, setCart, handleAddtoCart, isAddToCart, HandleRemoveFromCart,login, setLogin }}>
       <Router>
 
         <Header />
 
         <Routes>
-          <Route path='/' element={<Product />}> </Route>
+          <Route path='/' element={<Home />}> </Route>
           <Route path='/product' element={<Parent />}>
             <Route index element={<Product />} />
             <Route path="/product/:id" element={<ProductDetails />} > </Route>
@@ -55,7 +71,9 @@ function App() {
           <Route path='/about' element={<About />}> </Route>
           <Route path='/blog' element={<Blog />}> </Route>
           <Route path='/contact' element={<Contact />}> </Route>
-        </Routes>
+          <Route path='/signup' element={<Signup />}> </Route>
+          <Route path='/signin' element={<Signin />}> </Route>
+        </Routes> 
 
       </Router>
       
