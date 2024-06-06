@@ -5,6 +5,8 @@ import axios from 'axios';
 
 function App() {
 
+  const [nameFaculty, setNameFaculty] = useState([])
+
   const faculty = ["Rohit Jain", "Somesh Sharma"];
   const [facultyNames, setFacultyNames] = useState(faculty);
   const [sortedStudents, setSortedStudents] = useState([]);
@@ -54,22 +56,23 @@ function App() {
   }
 
 
+    // console.log(nameFaculty);
 
 
-  // useEffect(()=>{
-  //   axios.get("https://attendance-api-sjkr.onrender.com/getFaculty")
-  //   .then((response)=>{console.log(response.data)})
-  // },[])
+  useEffect(()=>{
+    axios.get("https://attendance-api-sjkr.onrender.com/getFaculty")
+    .then((response)=>{console.log(response.data)})
+  },[])
   
     // useEffect(()=>{
     //   axios.post("https://attendance-api-sjkr.onrender.com/saveFaculty",
     //   {name:"Shubh"}).then((response)=>console.log(response.data))
     // },[])
 
-  useEffect(()=>{
-    axios.get("https://attendance-api-sjkr.onrender.com/getStudent")
-    .then((response)=>{console.log(response.data)})
-  },[])
+  // useEffect(()=>{
+  //   axios.get("https://attendance-api-sjkr.onrender.com/getStudent")
+  //   .then((response)=>{console.log(response.data)})
+  // },[])
 
   //   useEffect(()=>{
   //   axios.post("https://attendance-api-sjkr.onrender.com/saveStudent",{name : "Divyansh Sahu", faculty:"Rohit Sir"})
@@ -142,34 +145,4 @@ function App() {
 export default App
 
 
-// const [faculty, setFaculty] = useState("")
 
-
-{/* <div className="facultyname">
-        <label htmlFor="faculty">Select Faculty name </label>
-        <select name="faculty" id="faculty" onChange={(e) => setFaculty(e.target.value)}>
-          <option value="">Select Faculty</option>
-          <option value="somesh">Somesh Sharma</option>
-          <option value="rohit">Rohit jain</option>
-        </select>
-      </div>
-
-      <div className="students">
-        <ol>
-          {
-            faculty == ""
-              ?
-              "Select Faculty name"
-              :
-              faculty == "somesh"
-                ?
-                students[0].names.sort().map((student, index) => {
-                  return <li key={index}>{student}</li>
-                })
-                :
-                students[1].names.sort().map((student, index) => {
-                  return <li key={index}>{student}</li>
-                })
-          }
-        </ol>
-      </div> */}
