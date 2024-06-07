@@ -4,7 +4,10 @@ import { Link } from 'react-router-dom';
 import { context } from '../App';
 
 
+
+
 const Product = () => {
+  
   const [products, setProduct] = useState([])
   const { handleAddtoCart, isAddToCart, HandleRemoveFromCart } = useContext(context)
 

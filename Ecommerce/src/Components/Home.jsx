@@ -34,7 +34,7 @@ const Home = () => {
         <>
             <div className="home">
                 <div className="left">
-                    <h2>We are changing the way people shop</h2>
+                    <h1>We are changing the way people shop</h1>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum fugit quo excepturi fugiat facere atque placeat voluptatum vel veritatis nam!</p>
                     <button onClick={()=> navigate('/product')}>Our products</button>
                 </div>
