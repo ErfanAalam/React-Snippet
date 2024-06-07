@@ -8,16 +8,14 @@ const Signup = () => {
     const [password, setPassword] = useState("")
 
     useEffect(() => {
-        if (userinfo.length > 0) {
-            localStorage.setItem("users", JSON.stringify(userinfo));
-        } else {
-            console.log("nothing");
-        }
-
+        userinfo.length >= 0 ? 
+            localStorage.setItem("users", JSON.stringify(userinfo))
+            : console.log("nothing");
+            
 
         const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
         setUserInfo(storedUsers);
-    }, [])
+    }, [name])
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -46,6 +44,7 @@ const Signup = () => {
         console.log(users);
     }
 
+    // localStorage.clear()
 
 
     return (

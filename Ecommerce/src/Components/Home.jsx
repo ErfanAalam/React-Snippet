@@ -3,9 +3,13 @@ import { useContext } from 'react'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { context } from '../App';
+import { useNavigate } from 'react-router-dom';
 
 
 const Home = () => {
+
+    const navigate = useNavigate()
+
     const [products, setProduct] = useState([])
     const { handleAddtoCart, isAddToCart, HandleRemoveFromCart } = useContext(context)
 
@@ -30,9 +34,9 @@ const Home = () => {
         <>
             <div className="home">
                 <div className="left">
-                    <h1>We are changing the way people shop</h1>
+                    <h2>We are changing the way people shop</h2>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum fugit quo excepturi fugiat facere atque placeat voluptatum vel veritatis nam!</p>
-                    <button>Our products</button>
+                    <button onClick={()=> navigate('/product')}>Our products</button>
                 </div>
                 <div className="right">
                     <img src="public\homeimg1.webp" alt="" />

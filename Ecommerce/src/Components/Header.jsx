@@ -9,21 +9,28 @@ import { Nightlight } from '@mui/icons-material';
 const Header = () => {
   const { cart, login, setLogin } = useContext(context)
 
+  let name = localStorage.getItem("name")
+
+  function handleSignout(){
+    localStorage.removeItem("name")
+  }
+
+
   const [darkmode, setDarkMode] = useState(true)
 
   return (
     <div>
       <div className="upper">
         <div className="auth">
-          {login === null ? (
+          {!name ? (
             <>
               <a href="/signin">Sign in/Guest</a>
               <a href="/signup">Create Account</a>
             </>
           ) : (
             <>
-              <a href="/signin">Hello, {login}</a>
-              <a href="/signup">Sign out</a>
+              <a href="/signin">Hello, {name}</a>
+              <a href="/signup" onClick={handleSignout}>Sign out</a>
             </>
           )}
 
