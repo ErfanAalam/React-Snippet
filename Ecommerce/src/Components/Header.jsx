@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useContext } from 'react'
 import { context } from '../App'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
@@ -7,14 +7,16 @@ import { Nightlight } from '@mui/icons-material';
 
 
 const Header = () => {
-  const { cart, login, setLogin } = useContext(context)
+  const { cartItem } = useContext(context)
+
 
   let name = localStorage.getItem("name")
 
-  function handleSignout(){
+  function handleSignout() {
     localStorage.removeItem("name")
   }
 
+ 
 
   const [darkmode, setDarkMode] = useState(true)
 
@@ -29,8 +31,8 @@ const Header = () => {
             </>
           ) : (
             <>
-              <a href="/signin">Hello, {name}</a>
-              <a href="/signup" onClick={handleSignout}>Sign out</a>
+              <a href="">Hello, {name}</a>
+              <a href="" onClick={handleSignout}>Sign out</a>
             </>
           )}
 
@@ -51,7 +53,7 @@ const Header = () => {
               darkmode ? <Nightlight /> : <LightModeIcon />
             }
           </span>
-          <a href=""> <ShoppingCartIcon />  {cart.length} </a>
+          <a href="/cart"> <ShoppingCartIcon />  {cartItem.length} </a>
         </div>
       </header>
     </div>

@@ -7,33 +7,45 @@ import Product from './Components/Product.jsx';
 import Contact from './Components/Contact.jsx';
 import ProductDetails from './Components/ProductDetails.jsx';
 import Parent from './Components/Parent.jsx';
-import { useState, createContext } from 'react';
+import { useState, createContext, useEffect } from 'react';
 import Home from './Components/Home.jsx';
 import Signup from './Components/Signup.jsx';
 import Signin from './Components/Signin.jsx';
+import Cart from './Components/Cart.jsx';
 
 
 export const context = createContext()
 
 function App() {
 
-  const [cart, setCart] = useState([])
-  const [cartItem, setCartItem] = useState([])
-
+  let name = localStorage.getItem("name")
   const [login, setLogin] = useState(null)
 
+  const [cartItem, setCartItem] = useState(
+    localStorage
+      ? localStorage.getItem(name) === null
+        ? []
+        : JSON.parse(localStorage.getItem(name))
+      : []
+  )
+
+
+  
+  useEffect(() => {
+
+    name && localStorage.setItem(name, JSON.stringify(cartItem))
+
+
+  }, [cartItem])
 
   function handleAddtoCart(e, product) {
     e.preventDefault()
-    setCart([...cart, product])
     setCartItem([...cartItem, product])
-    // localStorage.clear()
-    localStorage.setItem("cartitem",JSON.stringify(cartItem))
-    // console.log(cart);
+
   }
 
   function isAddToCart(id) {
-    const isProductAdded = cart.find((addedproduct) => { return addedproduct.id === id })
+    const isProductAdded = cartItem.find((addedproduct) => { return addedproduct.id === id })
     if (isProductAdded) {
       return true
     } else {
@@ -44,20 +56,15 @@ function App() {
 
   function HandleRemoveFromCart(e, id) {
     e.preventDefault()
-    setCart(cart.filter((addedProduct) => {
-      return addedProduct.id !== id
-    }))
     setCartItem(cartItem.filter((addedProduct) => {
       return addedProduct.id !== id
     }))
-    // localStorage.clear()
-    localStorage.setItem("cartitem",JSON.stringify(cartItem))
 
 
   }
 
   return (
-    <context.Provider value={{ cart, setCart, handleAddtoCart, isAddToCart, HandleRemoveFromCart,login, setLogin }}>
+    <context.Provider value={{ handleAddtoCart, isAddToCart, HandleRemoveFromCart, login, setLogin, cartItem }}>
       <Router>
 
         <Header />
@@ -73,10 +80,11 @@ function App() {
           <Route path='/contact' element={<Contact />}> </Route>
           <Route path='/signup' element={<Signup />}> </Route>
           <Route path='/signin' element={<Signin />}> </Route>
-        </Routes> 
+          <Route path='/cart' element={<Cart />}> </Route>
+        </Routes>
 
       </Router>
-      
+
     </context.Provider>
   )
 

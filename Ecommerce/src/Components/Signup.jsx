@@ -1,8 +1,17 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router'
 
 const Signup = () => {
 
-    const [userinfo, setUserInfo] = useState([])
+    const navigate = useNavigate()
+
+    const [userinfo, setUserInfo] = useState(
+        localStorage
+      ? localStorage.getItem("users") ===null
+        ? []
+        : JSON.parse(localStorage.getItem("users"))
+      : []
+    )
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -39,6 +48,7 @@ const Signup = () => {
         setPassword("")
 
         alert("Registration Succesfull")
+        // navigate("/signin")
 
         let users = JSON.parse(localStorage.getItem("users")) || []
         console.log(users);
