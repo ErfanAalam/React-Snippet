@@ -21,7 +21,7 @@ const Signin = () => {
     console.log(users);
 
     users.map((user) => {
-      if (user.email === email) {
+      if (user.email === email && user.password === password) {
         setName(user.name)
         setLogin(name)
         localStorage.setItem("name",user.name)
