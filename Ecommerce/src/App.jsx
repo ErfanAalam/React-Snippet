@@ -27,7 +27,7 @@ function App() {
     e.preventDefault()
     setCart([...cart, product])
     setCartItem([...cartItem, product])
-    localStorage.clear()
+    // localStorage.clear()
     localStorage.setItem("cartitem",JSON.stringify(cartItem))
     // console.log(cart);
   }
@@ -50,7 +50,7 @@ function App() {
     setCartItem(cartItem.filter((addedProduct) => {
       return addedProduct.id !== id
     }))
-    localStorage.clear()
+    // localStorage.clear()
     localStorage.setItem("cartitem",JSON.stringify(cartItem))
 
 
