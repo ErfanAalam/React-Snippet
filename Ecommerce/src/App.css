@@ -255,3 +255,12 @@ form{
   background-color:  rgb(82, 80, 80);
   color: white;
 }
+
+.amountdetail{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 2px solid;
+  width: 400px;
+  padding: 80px;
+}
